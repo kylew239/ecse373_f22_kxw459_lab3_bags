@@ -31,7 +31,7 @@ roslaunch lab_3_Bags bags.launch use_xacro:=true use_robot_state_publisher:=fals
 ```
 
 
-### `bags_with_bag_file.launch` 
+### Launching with rosbag and map_server
 This launch file is slightly modified to take take an optional parameter `bag_file` and run that file along with the map server. This launch file will search for the `maps_glennan` package and use the `glennan5_map.yaml` file.
 
 Run this file by using:
