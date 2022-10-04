@@ -29,3 +29,13 @@ Example uses of the `roslaunch` command with optional parameters:
 roslaunch lab_3_Bags bags.launch use_this_xacro:=true
 roslaunch lab_3_Bags bags.launch use_xacro:=true use_robot_state_publisher:=false
 ```
+
+
+### `bags_with_bag_file.launch` 
+This launch file is slightly modified to take take an optional parameter `bag_file` and run that file along with the map server. This launch file will search for the `maps_glennan` package and use the `glennan5_map.yaml` file.
+
+Run this file by using:
+```
+roslaunch lab_3_Bags bags_with_bag_file.launch bagfile:=<location_of_bag_file>
+```
+By default, this launch file will use the `glennan_5_basic.bag` if it is located within the package. You can change this by replacing `<location_of_bag_file>` with the file path of the bag file you wish to use.

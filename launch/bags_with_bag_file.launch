@@ -4,15 +4,19 @@
     <arg name="use_xacro" default="false" />
     <arg name="publisher_gui" default ="true" />
     <arg name="use_robot_state_publisher" default="true" />
-    <arg name="bag_file" default="" />
+    <arg name="bag_file" default="$(find lab_3_Bags)/glennan_5_basic.bag" />
 
     <include file="$(find navvis_description)/launch/navvis.launch">
         <!-- Sets the included launch files args to the ones being used in the main launch file -->
         <arg name="use_xacro" value="$(arg use_xacro)" />
         <arg name="publisher_gui" value="$(arg publisher_gui)" />
         <arg name="use_robot_state_publisher" value="$(arg use_robot_state_publisher)" />
+
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lab_3_bags)/config/new_config.rviz" required="true" />
     </include>
 
     <param if="$(arg use_this_xacro)" name="robot_description" command="$(find xacro)/xacro $(find lab_3_Bags)/urdf/bags.xacro" />
-
+    
+    <node pkg="rosbag" type="play" name="rosbag" args="$(arg bag_file) /tf_trajectory:=/tf --clock" />
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find maps_glennan)/glennan5_map.yaml" />
 </launch>
