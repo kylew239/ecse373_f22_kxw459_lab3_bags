@@ -1,0 +1,17 @@
+<launch>
+    <!-- Declares args to use, including ones used by the included launch file -->
+    <arg name="use_this_xacro" default="false" />
+    <arg name="use_xacro" default="false" />
+    <arg name="publisher_gui" default ="true" />
+    <arg name="use_robot_state_publisher" default="true" />
+
+    <include file="$(find navvis_description)/launch/navvis.launch">
+        <!-- Sets the included launch files args to the ones being used in the main launch file -->
+        <arg name="use_xacro" value="$(arg use_xacro)" />
+        <arg name="publisher_gui" value="$(arg publisher_gui)" />
+        <arg name="use_robot_state_publisher" value="$(arg use_robot_state_publisher)" />
+    </include>
+
+    <param if="$(arg use_this_xacro)" name="robot_description" command="$(find xacro)/xacro $(find lab_3_Bags)/urdf/bags.xacro" />
+
+</launch>
